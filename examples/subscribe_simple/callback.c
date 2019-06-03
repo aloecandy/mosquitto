@@ -12,7 +12,7 @@ struct tm *struct_time;
 struct tm *prev_struct_time;
 
 int createFile(char* filename){
-	strcat(strcpy(fileAddr, getenv("HOME")), "/");
+	strcat(strcpy(fileAddr, getenv("HOME")), "/dust/");
 	strcat(fileAddr, filename);
 	strcat(fileAddr,".csv");
 	fp=fopen(fileAddr,"w");
@@ -37,7 +37,7 @@ int on_message(struct mosquitto *mosq, void *userdata, const struct mosquitto_me
 		createFile(tmp);
 	}
 	
-	printf("%s,%2d%2d%2d,%s\n", msg->topic,
+	printf("%s,%02d%02d%02d,%s\n", msg->topic,
 	  struct_time->tm_hour,struct_time->tm_min,struct_time->tm_sec,
 	  (const char *)msg->payload);
 	fp=fopen(fileAddr,"a");
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 	rc = mosquitto_subscribe_callback(
 			on_message, NULL,
 			"dust/#", 0,
-			"ethernetcard.dlinkddns.com", 1883,
+			"localhost", 1883,
 			NULL, 60, true,
 			NULL, NULL,
 			NULL, NULL);
