@@ -52,3 +52,4 @@ test/lib/cpp/*.test
 
 www/cache/
 __pycache__
+.vscode/
