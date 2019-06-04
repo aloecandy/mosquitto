@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 
 	rc = mosquitto_subscribe_callback(
 			on_message, NULL,
-			"dust/#", 0,
+			"dust/status", 0,
 			"localhost", 1883,
 			NULL, 60, true,
 			NULL, NULL,
