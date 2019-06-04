@@ -21,7 +21,7 @@ int createFile(char* filename){
 		return -1;
     }
 	else{
-		fprintf(fp, "topic,time,dust[ug/m^3],fan,ionizionizer\n");
+		fprintf(fp, "topic,time,dust[ug/m^3],fan,ionizer\n");
 		fclose(fp);
 		return 1;
 	}
