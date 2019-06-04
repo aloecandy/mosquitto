@@ -21,7 +21,7 @@ int createFile(char* filename){
 		return -1;
     }
 	else{
-		fprintf(fp, "topic,time,dust[ug/m^3]\n");
+		fprintf(fp, "topic,time,dust[ug/m^3],fan,ionizionizer\n");
 		fclose(fp);
 		return 1;
 	}
@@ -46,7 +46,7 @@ int on_message(struct mosquitto *mosq, void *userdata, const struct mosquitto_me
 		return -1;
     }
 	else{
-		fprintf(fp,"%s,%02d%02d%02d,%s\n", msg->topic,
+		fprintf(fp,"%s,%02d:%02d:%02d,%s\n", msg->topic,
 			struct_time->tm_hour,struct_time->tm_min,struct_time->tm_sec,
 			(const char *)msg->payload);
 		fclose(fp);
