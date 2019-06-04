@@ -69,7 +69,7 @@ WITH_SRV:=no
 WITH_UUID:=no
 
 # Build with websockets support on the broker.
-WITH_WEBSOCKETS:=no
+WITH_WEBSOCKETS:=yes
 
 # Use elliptic keys in broker
 WITH_EC:=yes
