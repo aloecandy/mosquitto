@@ -9,7 +9,7 @@ FILE *fp;
 char fileAddr[256];
 time_t current_time;
 struct tm *struct_time;
-struct tm *prev_struct_time;
+int prev_day=0;
 
 int createFile(char* filename){
 	strcat(strcpy(fileAddr, getenv("HOME")), "/dust/");
@@ -30,8 +30,8 @@ int on_message(struct mosquitto *mosq, void *userdata, const struct mosquitto_me
 {
 	time(&current_time);
 	struct_time=localtime(&current_time);
-	if(prev_struct_time==NULL ||prev_struct_time->tm_mday!=struct_time->tm_mday){
-		prev_struct_time=struct_time;
+	if(prev_day==0 ||prev_day !=struct_time->tm_mday){
+		prev_day = struct_time->tm_mday;
 		char tmp[20];
 		sprintf(tmp,"dust_%02d%02d%02d",struct_time->tm_year%100,struct_time->tm_mon,struct_time->tm_mday);
 		createFile(tmp);
